@@ -119,12 +119,19 @@ if __name__ == "__main__":
     parser.add_argument('host', type=str)
     parser.add_argument('remote_dir', type=str, help='source directory')
     parser.add_argument('local_dir', type=str, help='target directory')
+    parser.add_argument('acct', type=str, help='acct')
+    parser.add_argument('timeout', type=str, help='timeout in seconds')
     parser.add_argument('--username', type=str, help='username for login')
     parser.add_argument('--password', type=str, help='password for login')
     parser.add_argument('--sleep', type=str, default=4,
                         help=('delay between files to avoid hammering sever '
                               '(in seconds)'))
     args = parser.parse_args()
-    ftp = ftplib.FTP(args.host, args.username or None, args.password or None)
+    timeoutfloat=0
+    if (args.timeout):
+       timeoutfloat=float(args.timeout)
+    print ("timeout is "+args.timeout)
+    ftp = ftplib.FTP(args.host, args.username or None, args.password or None,args.acct or None,timeoutfloat)
+    ftp.set_pasv(False)
     ftp.login()
     download_ftp_tree(ftp, args.remote_dir, args.local_dir, args.sleep)
