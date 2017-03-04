@@ -1,0 +1,5 @@
+Some of things we've tried involved using python to interact with the s3 datastore.
+
+https://github.com/boto/boto3
+
+^need to have some aws s3 tokens to actually make & test stuff for this.

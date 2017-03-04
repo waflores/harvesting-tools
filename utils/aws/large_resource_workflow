@@ -1,0 +1,18 @@
+1. spin up ec2 instance
+2. install s3fuse and use that to connect a s3 bucket to instance
+3. put UUID folder contents to AWS
+4. start a screen session
+5. execute command to download file and append `&& touch DOWNLOAD.DONE` (as a done flag upon successful completion)
+6. detach the screen
+7. document what you've got started with this format:
+
+cat <UUID>.collections.notes
+This is the data set that this is collecting:
+ftp://<url>
+
+started the job to download: <date>
+To reconnect to this job use: screen -R <output of `screen -ls`>
+
+8. have a script running that monitors DOWNLOAD.DONE
+9. use aws cli to upload to S3 bucket
+10. rinse & repeat
